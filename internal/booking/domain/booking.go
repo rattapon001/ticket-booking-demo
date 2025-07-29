@@ -20,6 +20,7 @@ type Booking struct {
 	EventID   string    `json:"event_id"`
 	Status    Status    `json:"status"` // Use int for JSON serialization
 	CreatedAt time.Time `json:"created_at"`
+	Version   int       `json:"version"`
 }
 
 func NewBooking(userID string, eventID string) (*Booking, error) {
@@ -36,6 +37,7 @@ func NewBooking(userID string, eventID string) (*Booking, error) {
 		EventID:   eventID,
 		Status:    StatusPending,
 		CreatedAt: time.Now(),
+		Version:   1,
 	}, nil
 }
 
