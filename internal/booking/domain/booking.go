@@ -38,3 +38,15 @@ func NewBooking(userID string, eventID string) (*Booking, error) {
 		CreatedAt: time.Now(),
 	}, nil
 }
+
+func (b *Booking) Confirm() {
+	b.Status = StatusConfirmed
+}
+
+func (b *Booking) Cancel() {
+	b.Status = StatusCancelled
+}
+
+func (b *Booking) IsPending() bool {
+	return b.Status == StatusPending
+}
