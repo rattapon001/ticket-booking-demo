@@ -27,7 +27,7 @@ func (r *BookingMemoryRepository) Save(booking *domain.Booking) error {
 	return nil
 }
 
-func (r *BookingMemoryRepository) Find(options query.FindOptions[domain.Booking]) ([]*domain.Booking, error) {
+func (r *BookingMemoryRepository) Find(options query.FindManyOptions[domain.Booking]) ([]*domain.Booking, error) {
 	var results []*domain.Booking
 
 	whereVal := reflect.ValueOf(options.Where)
@@ -61,8 +61,10 @@ func (r *BookingMemoryRepository) Find(options query.FindOptions[domain.Booking]
 	return results, nil
 }
 
-func (r *BookingMemoryRepository) FindOne(options query.FindOptions[domain.Booking]) (*domain.Booking, error) {
-	results, err := r.Find(options)
+func (r *BookingMemoryRepository) FindOne(options query.FindOneOptions[domain.Booking]) (*domain.Booking, error) {
+	results, err := r.Find(query.FindManyOptions[domain.Booking]{
+		Where: options.Where,
+	})
 	if err != nil {
 		return nil, err
 	}

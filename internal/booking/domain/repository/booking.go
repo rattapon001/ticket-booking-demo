@@ -7,7 +7,7 @@ import (
 
 type BookingRepository interface {
 	Save(booking *domain.Booking) error
-	Find(options query.FindOptions[domain.Booking]) ([]*domain.Booking, error)
-	FindOne(options query.FindOptions[domain.Booking]) (*domain.Booking, error)
+	Find(options query.FindManyOptions[domain.Booking]) ([]*domain.Booking, error)
+	FindOne(options query.FindOneOptions[domain.Booking]) (*domain.Booking, error)
 	Remove(booking *domain.Booking) error
 }

@@ -17,7 +17,7 @@ func TestSaveBooking(t *testing.T) {
 
 	err = repo.Save(booking)
 	assert.NoError(err)
-	results, err := repo.Find(query.FindOptions[domain.Booking]{
+	results, err := repo.Find(query.FindManyOptions[domain.Booking]{
 		Where: domain.Booking{},
 	})
 	assert.NoError(err)
